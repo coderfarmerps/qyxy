@@ -5,7 +5,7 @@ server:
     accept-count: 500
     max-threads: 500
     uri-encoding: UTF-8
-  display-name: bricksync
+  display-name: qyxy-record
 
 
 endpoints:
