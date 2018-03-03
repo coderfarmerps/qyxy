@@ -1,0 +1,78 @@
+# 数据库 及 Redis 配置
+server:
+  port: 8080
+  tomcat:
+    accept-count: 500
+    max-threads: 500
+    uri-encoding: UTF-8
+  display-name: bricksync
+
+
+endpoints:
+  shutdown:
+    enabled: true
+    sensitive: false
+
+spring:
+  datasource:
+    name: druid
+    url: ${jdbc.url}?useServerPrepStmts=true&useUnicode=true&characterEncoding=UTF-8&cachePrepStmts=true&prepStmtCacheSize=128&prepStmtCacheSqlLimit=256
+    username: ${jdbc.username}
+    password: ${jdbc.password}
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initialSize: 5
+      minIdle: 15
+      maxActive: 60
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 'x'
+      testWhileIdle: true
+      testOnBorrow: true
+      testOnReturn: true
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat
+  mvc:
+    view:
+      prefix: /WEB-INF/pages/
+      suffix: .jsp
+  thymeleaf:
+    cache: false
+    enabled: false
+  mail:
+    host: smtp.163.com
+    username: xxx
+    password: xxx
+    default-encoding: utf-8
+    properties:
+      mail:
+        debug: true
+        smtp:
+          auth: true
+        starttls:
+          enable: true
+          required: true
+        transport:
+          protocol: smtp
+
+
+mybatis:
+  mapper-locations: mapper/*.xml
+  config-location: classpath:mybatis-config.xml
+
+jdbc:
+  url: jdbc:mysql://127.0.0.1:3306/db
+  username: xxx
+  password: xxx
+
+question:
+  question: xxx？
+  answer: xxx
+  expireTime: 180
+
+mail:
+  from: xxx
+  to: xxx
+  titlePre: 标题前缀

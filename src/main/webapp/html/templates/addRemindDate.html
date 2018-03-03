@@ -1,0 +1,36 @@
+<div class="text-center mt30">
+    <form class="form-horizontal" name="form">
+        <div class="form-group">
+            <label class="control-label col-sm-3"><i class="text-danger">*</i> 标题：</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" ng-model="entity.title" placeholder="如：大师兄的生日" required/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3"><i class="text-danger">*</i> 日期：</label>
+            <span class="dropdown col-sm-4" required ng-click="$event.stopPropagation();">
+                  <a class="dropdown-toggle">
+                    <div class="input-group">
+                      <input id="entity.importantDate" type="text" class="form-control" ng-model="entity.importantDate" readonly required />
+                      <span class="input-group-addon" ng-if="!entity.importantDate"><i class="fa fa-calendar"></i></span>
+                      <span class="input-group-addon" ng-if="entity.importantDate" ng-click="entity.importantDate=null;$event.stopPropagation();"><i class="fa fa-times"></i></span>
+                    </div>
+                  </a>
+                  <div class="dropdown-menu">
+                    <div datetimepicker ng-model="entity.importantDate"></div>
+                  </div>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3"> 备注：</label>
+            <div class="col-sm-4">
+                <textarea class="form-control" cols="7" rows="5" ng-model="entity.remark"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2 col-sm-offset-4">
+                <button class="form-control btn btn-primary" ng-click="save()" ng-disabled="form.$invalid">保存</button>
+            </div>
+        </div>
+    </form>
+</div>

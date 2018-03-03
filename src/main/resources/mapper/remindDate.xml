@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qyxy.record.dao.IRemindDateDao">
+    <resultMap id="BaseResultMap" type="com.qyxy.record.dataobject.RemindDate" >
+        <result column="id" property="id" />
+        <result column="important_date" property="importantDate" />
+        <result column="remark" property="remark" />
+        <result column="remind_times" property="remindTimes" />
+        <result column="is_finished" property="isFinished" />
+        <result column="next_remind_time" property="nextRemindTime" />
+        <result column="is_del" property="isDel" />
+        <result column="title" property="title" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+    id,important_date,remark,remind_times, is_finished, next_remind_time, is_del, title
+    </sql>
+    
+    <insert id="insert" parameterType="com.qyxy.record.dataobject.Account" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO remind_date
+        (
+            important_date,remark,remind_times, is_finished, next_remind_time, title
+        )
+        VALUES
+        (
+            #{importantDate}, #{remark}, 0, 0, #{nextRemindTime}, #{title}
+        )
+    </insert>
+
+    <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT * FROM remind_date where id = #{id}
+    </select>
+
+    <update id="update" parameterType="com.qyxy.record.dataobject.RemindDate">
+        UPDATE remind_date
+        SET
+          important_date = #{importantDate},
+          remark =  #{remark},
+          remind_times = #{remindTimes},
+          is_finished = #{isFinished},
+          next_remind_time = #{nextRemindTime},
+          title = #{title}
+        WHERE id = #{id}
+    </update>
+
+    <update id="deleteById" parameterType="java.lang.Long">
+        UPDATE remind_date set is_del = 1 where id = #{id}
+    </update>
+
+    <update id="finishRemindDate" parameterType="java.lang.Long">
+        UPDATE remind_date set is_finished = 1 where id = #{id}
+    </update>
+
+    <select id="getRemindDateList" resultMap="BaseResultMap">
+        SELECT * FROM remind_date
+        <where>
+            is_del = 0
+            <if test="beginTime != null">
+                and important_date <![CDATA[>=]]> #{beginTime}
+            </if>
+            <if test="endTime != null">
+                and important_date <![CDATA[<=]]> #{endTime}
+            </if>
+            <if test="isFinished != null">
+                and is_finished = #{isFinished}
+            </if>
+        </where>
+    </select>
+
+    <select id="getReadyDataList" resultMap="BaseResultMap">
+        SELECT * FROM remind_date WHERE is_del = 0 and is_finished = 0
+        and next_remind_time <![CDATA[<=]]> (UNIX_TIMESTAMP(now()) * 1000)
+    </select>
+</mapper>

@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-md-10 mt10">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>标题</th>
+                <th>时间</th>
+                <th>备注</th>
+                <th>通知次数</th>
+                <th>下次通知时间</th>
+                <th>是否已经完成</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="remindDate in remindDateList">
+                <td ng-bind="remindDate.title"></td>
+                <td ng-bind="remindDate.importantDate | date: 'yyyy-MM-dd HH:mm:ss'"></td>
+                <td ng-bind="remindDate.remark"></td>
+                <td ng-bind="remindDate.remindTimes"></td>
+                <td ng-bind="remindDate.nextRemindTime | date: 'yyyy-MM-dd HH:mm:ss'"></td>
+                <td ng-bind="remindDate.isFinished == 1 ? '是': '否'"></td>
+                <td>
+                    <a href="" ui-sref="addRemindDate({id:remindDate.id})">修改</a>
+                    <i>&nbsp; | &nbsp;</i>
+                    <a href="" ng-click="finishRemindDate(remindDate.id)" ng-if="remindDate.isFinished == 0">完成</a>
+                    <i ng-if="remindDate.isFinished == 0">&nbsp; | &nbsp;</i>
+                    <a href="" ng-click="delRemindDate(remindDate.id)">删除</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-7 mt10 text-right">
+        <ul pagination ng-model="page" items-per-page="size" total-items="total" ng-change="getRemindDateList()"></ul>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-md-7 mt10">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>账号类型</th>
+                <th>账号备注</th>
+                <th>账号</th>
+                <th>密码</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="account in accountList">
+                <td ng-bind="account.accountTypeName"></td>
+                <td ng-bind="account.remark"></td>
+                <td ng-bind="account.account"></td>
+                <td ng-show="!account.display" ng-click="account.display = !account.display">
+                    ******
+                </td>
+                <td id="account_{{account.id}}" ng-bind="account.password" ng-show="account.display" ng-click="account.display = !account.display">
+                </td>
+                <td>
+                    <a class="clipboard" href="" data-clipboard-target="#account_{{account.id}}">
+                        <i class="fa fa-clipboard"></i></a>
+                    <i>&nbsp; | &nbsp;</i>
+                    <a href="" ui-sref="addAccount({id:account.id})">修改</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-7 mt10 text-right">
+        <ul pagination ng-model="page" items-per-page="size" total-items="total" ng-change="getAccountList()"></ul>
+    </div>
+</div>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qyxy.record.dao.IAccountDao">
+    <resultMap id="BaseResultMap" type="com.qyxy.record.dataobject.Account" >
+        <result column="id" property="id" />
+        <result column="account" property="account" />
+        <result column="password" property="password" />
+        <result column="remark" property="remark" />
+        <result column="account_type_id" property="accountTypeId" />
+        
+    </resultMap>
+
+    <resultMap id="BaseResultMapDO" type="com.qyxy.record.modal.AccountDO" >
+        <result column="id" property="id" />
+        <result column="account" property="account" />
+        <result column="password" property="password" />
+        <result column="remark" property="remark" />
+        <result column="account_type_id" property="accountTypeId" />
+        <result column="account_type_name" property="accountTypeName" />
+
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+    id,account,password,account_type_id, remark
+    </sql>
+    
+    <insert id="insert" parameterType="com.qyxy.record.dataobject.Account" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO account
+        (
+          
+
+          <if test="account != null" >
+            account,
+          </if>
+            
+          <if test="password != null" >
+            password,
+          </if>
+            
+          <if test="accountTypeId != null" >
+            account_type_id,
+          </if>
+
+        remark
+            
+        )
+        VALUES
+        (
+            
+              <if test="account != null" >
+                #{ account },
+              </if>
+                
+              <if test="password != null" >
+                #{ password },
+              </if>
+                
+              <if test="accountTypeId != null" >
+                #{ accountTypeId },
+              </if>
+        #{remark}
+                
+        )
+    </insert>
+
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+      select 
+        <include refid="Base_Column_List" />
+      from account
+      where id = #{id}
+    </select>
+
+    <select id="getAcccount" resultMap="BaseResultMap">
+        SELECT * FROM account
+        WHERE account = #{account} and account_type_id = #{accountTypeId}
+        <if test="excludeId != null">
+            and id != #{excludeId}
+        </if>
+    </select>
+
+    <update id="updateById" parameterType="com.qyxy.record.dataobject.Account">
+      UPDATE account
+      SET account = #{account},
+          password = #{password},
+          account_type_id = #{accountTypeId},
+          remark = #{remark}
+      WHERE id = #{id}
+    </update>
+
+    <select id="getAccountList" resultMap="BaseResultMapDO">
+        SELECT a.*, ata.name as 'account_type_name' FROM account a
+        INNER join account_type ata on a.account_type_id = ata.id
+        <where>
+          <if test="account != null">
+              and account like concat('%', #{account}, '%')
+          </if>
+          <if test="accountTypeId != null">
+              and account_type_id = #{accountTypeId}
+          </if>
+        </where>
+        order by id desc
+    </select>
+</mapper>

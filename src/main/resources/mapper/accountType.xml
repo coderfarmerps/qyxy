@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qyxy.record.dao.IAccountTypeDao">
+    <resultMap id="BaseResultMap" type="com.qyxy.record.dataobject.AccountType" >
+        <result column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="code" property="code" />
+        
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+    id,name,code
+    </sql>
+    
+    <insert id="insert" parameterType="com.qyxy.record.dataobject.AccountType" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO account_type
+        (
+
+          <if test="name != null" >
+            name,
+          </if>
+            
+          <if test="code != null" >
+            code
+          </if>
+            
+        )
+        VALUES
+        (
+            
+              <if test="name != null" >
+                #{ name },
+              </if>
+                
+              <if test="code != null" >
+                #{ code }
+              </if>
+                
+        )
+    </insert>
+
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+      select 
+        <include refid="Base_Column_List" />
+      from account_type
+      where id = #{id}
+    </select>
+
+
+
+    <select id="getByCode" resultMap="BaseResultMap">
+        SELECT * FROM account_type
+        WHERE code = #{code}
+        <if test="excludeId != null">
+            and id != #{excludeId}
+        </if>
+    </select>
+
+    <update id="updateById" parameterType="com.qyxy.record.dataobject.Account">
+        UPDATE account_type
+        SET name = #{name},
+        code = #{code}
+        WHERE id = #{id}
+    </update>
+
+    <select id="getAccountTypeList" resultMap="BaseResultMap">
+        SELECT * FROM account_type order by id desc
+    </select>
+
+</mapper>

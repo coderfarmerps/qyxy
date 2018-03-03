@@ -1,0 +1,114 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "ngclipboard",
+        "scope": null,
+        "escapedName": "ngclipboard",
+        "name": "ngclipboard",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/luxiaoyong/code/workspace-front/qding"
+    ]
+  ],
+  "_from": "ngclipboard@latest",
+  "_id": "ngclipboard@2.0.0",
+  "_inCache": true,
+  "_location": "/ngclipboard",
+  "_nodeVersion": "4.4.7",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/ngclipboard_2.0.0_1520060495612_0.7008269518787595"
+  },
+  "_npmUser": {
+    "name": "sachinchoolur",
+    "email": "sachi77n@gmail.com"
+  },
+  "_npmVersion": "4.0.2",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "ngclipboard",
+    "scope": null,
+    "escapedName": "ngclipboard",
+    "name": "ngclipboard",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/ngclipboard/-/ngclipboard-2.0.0.tgz",
+  "_shasum": "406f6c34d21d78c13faafa7f7df2ae4acd50e75a",
+  "_shrinkwrap": null,
+  "_spec": "ngclipboard",
+  "_where": "/Users/luxiaoyong/code/workspace-front/qding",
+  "author": {
+    "name": "Sachin",
+    "email": "sachi77n@gmail.com",
+    "url": "https://github.com/sachinchoolur"
+  },
+  "bugs": {
+    "url": "https://github.com/sachinchoolur/ngclipboard/issues",
+    "email": "sachi77n@gmail.com"
+  },
+  "dependencies": {
+    "clipboard": "^2.0.0"
+  },
+  "description": "Angularjs directive for clipboard.js",
+  "devDependencies": {
+    "angular": "^1.2.0",
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-concat": "^0.5.0",
+    "grunt-contrib-connect": "^0.9.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-qunit": "^0.5.1",
+    "grunt-contrib-uglify": "^0.7.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "jshint-stylish": "^1.0.0",
+    "load-grunt-tasks": "^2.0.0",
+    "time-grunt": "^1.0.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "406f6c34d21d78c13faafa7f7df2ae4acd50e75a",
+    "tarball": "https://registry.npmjs.org/ngclipboard/-/ngclipboard-2.0.0.tgz",
+    "fileCount": 16,
+    "unpackedSize": 19402
+  },
+  "gitHead": "cfe68908cbb62239e2c0eb5f483fc7ccfdac3fb7",
+  "homepage": "https://github.com/sachinchoolur/ngclipboard",
+  "keywords": [
+    "ngclipboard",
+    "copy",
+    "cut",
+    "clipboard",
+    "angularjs"
+  ],
+  "license": "MIT",
+  "main": "dist/ngclipboard.js",
+  "maintainers": [
+    {
+      "name": "sachinchoolur",
+      "email": "sachi77n@gmail.com"
+    }
+  ],
+  "name": "ngclipboard",
+  "optionalDependencies": {},
+  "peerDependencies": {
+    "angular": "^1.2.0"
+  },
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/sachinchoolur/ngclipboard.git"
+  },
+  "scripts": {
+    "test": "grunt"
+  },
+  "version": "2.0.0"
+}
