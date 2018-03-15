@@ -17,7 +17,7 @@ public interface IRemindDateDao {
 
     void deleteById(Long id);
 
-    void getRemindDateList(@Param("beginTime") Long beginTime, @Param("endTime") Long endTime, @Param("isFinished") Integer isFinished);
+    List<RemindDate> getRemindDateList(@Param("beginTime") Long beginTime, @Param("endTime") Long endTime, @Param("isFinished") Integer isFinished);
 
     List<RemindDate> getReadyDataList();
 
